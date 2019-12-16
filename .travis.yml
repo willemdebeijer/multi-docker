@@ -20,3 +20,16 @@ after_success:
   - docker push willemdb/multi-nginx
   - docker push willemdb/multi-server
   - docker push willemdb/multi-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-east-2-725187808797
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
